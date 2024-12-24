@@ -1,3 +1,10 @@
+FROM python:3.12-slim
+WORKDIR /app
+COPY first.py /app/
+CMD ["python","first.py"]
+
+
+
 # Use the official Nginx image as the base image
 FROM nginx:alpine
 
@@ -10,6 +17,27 @@ EXPOSE 80
 # Start Nginx when the container launches
 CMD ["nginx", "-g", "daemon off;"]
 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> welcome</h1>
+    <p> are yout hre</p>
+</body>
+</html>
+
+docke stop static-site
+docker rm static-site
+mv Dockerfile.txt Dockerfile
+docker build -t static-website .
+docker run -d -p 8081:80  --name
+static-site static-website
 
 
 
