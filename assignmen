@@ -1,0 +1,36 @@
+# Use the official Nginx image as the base image
+FROM nginx:alpine
+
+# Copy the static website files to the Nginx HTML directory
+COPY index.html /usr/share/nginx/html/
+
+# Expose port 80 for the web server
+EXPOSE 80
+
+# Start Nginx when the container launches
+CMD ["nginx", "-g", "daemon off;"]
+
+
+
+
+
+kube
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: nginx-deployment 
+spec: 
+  replicas: 2 
+  selector: 
+    matchLabels: 
+      app: nginx 
+  template: 
+    metadata: 
+      labels: 
+        app: nginx 
+    spec: 
+      containers: 
+      - name: nginx 
+        image: nginx:1.21 
+        ports: 
+        - containerPort: 80
